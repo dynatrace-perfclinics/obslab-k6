@@ -67,9 +67,8 @@
         "1": {
             "type": "data",
             "title": "Max VUs",
-            "query": "timeseries max(k6.vus_max)\n| limit 20",
+            "query": "timeseries max(k6.vus_max)",
             "queryConfig": {
-                "limit": 20,
                 "filters": {},
                 "version": "5.4.0",
                 "datatype": "metrics",
@@ -103,13 +102,19 @@
                     }
                 },
                 "singleValue": {
-                    "showLabel": true,
-                    "label": "gfdfsh",
+                    "showLabel": false,
+                    "label": "",
                     "prefixIcon": "",
-                    "recordField": "max(k6.vus_max)",
+                    "recordField": "value",
                     "autoscale": true,
                     "alignment": "center",
-                    "colorThresholdTarget": "value"
+                    "colorThresholdTarget": "value",
+                    "trend": {
+                        "isRelative": false
+                    },
+                    "sparklineSettings": {
+                        "isVisible": false
+                    }
                 },
                 "table": {
                     "rowDensity": "condensed",
@@ -1184,122 +1189,880 @@
             "type": "markdown",
             "title": "",
             "content": "![k6 logo](https://raw.githubusercontent.com/grafana/k6/master/assets/logo.svg)"
+        },
+        "19": {
+            "type": "data",
+            "title": "Max VUs",
+            "query": "timeseries max(k6.vus_max)\n| fieldsAdd value = arrayMax(`max(k6.vus_max)`)",
+            "queryConfig": {
+                "filters": {},
+                "version": "5.4.0",
+                "datatype": "metrics",
+                "metricKey": "k6.vus_max",
+                "aggregation": "max",
+                "by": [],
+                "convertToValue": "Max"
+            },
+            "subType": "dql-builder-metrics",
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "max(k6.vus_max)"
+                        ],
+                        "leftAxisDimensions": [
+                            "value"
+                        ]
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxisLabel": "dt.system.bucket",
+                        "valueAxisLabel": "interval"
+                    }
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "value",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value",
+                    "trend": {
+                        "isRelative": false
+                    },
+                    "sparklineSettings": {
+                        "isVisible": false
+                    }
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": "auto",
+                    "dataMappings": {}
+                },
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "value",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            }
+        },
+        "20": {
+            "type": "markdown",
+            "title": "",
+            "content": "## Quick Glance"
+        },
+        "21": {
+            "type": "data",
+            "title": "Average VUs",
+            "query": "timeseries avg(k6.vus)\n| fieldsAdd value = arrayAvg(`avg(k6.vus)`)",
+            "queryConfig": {
+                "filters": {},
+                "version": "5.4.0",
+                "datatype": "metrics",
+                "metricKey": "k6.vus",
+                "aggregation": "avg",
+                "by": [],
+                "convertToValue": "Avg"
+            },
+            "subType": "dql-builder-metrics",
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "avg(k6.vus)"
+                        ],
+                        "leftAxisDimensions": [
+                            "value"
+                        ]
+                    },
+                    "categoricalBarChartSettings": {}
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "label": "",
+                    "prefixIcon": "",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value",
+                    "recordField": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": "auto",
+                    "dataMappings": {}
+                },
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "value",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            }
+        },
+        "22": {
+            "type": "data",
+            "title": "Min Request Duration",
+            "query": "timeseries min(k6.http_req_duration)\n| fieldsAdd value = arrayMin(`min(k6.http_req_duration)`)",
+            "queryConfig": {
+                "filters": {},
+                "version": "5.4.0",
+                "datatype": "metrics",
+                "metricKey": "k6.http_req_duration",
+                "aggregation": "min",
+                "by": [],
+                "convertToValue": "Min"
+            },
+            "subType": "dql-builder-metrics",
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "min(k6.http_req_duration)"
+                        ],
+                        "leftAxisDimensions": [
+                            "value"
+                        ]
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxisLabel": "url",
+                        "valueAxisLabel": "interval"
+                    }
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "value",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value",
+                    "trend": {
+                        "isVisible": true
+                    },
+                    "sparklineSettings": {
+                        "isVisible": true
+                    }
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": "auto",
+                    "dataMappings": {}
+                },
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "value",
+                            "rangeAxis": ""
+                        }
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "avg(k6.http_req_duration)",
+                        "unitCategory": "time",
+                        "baseUnit": "millisecond",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1717634621203
+                    }
+                ]
+            }
+        },
+        "23": {
+            "type": "data",
+            "title": "Avg Request Duration",
+            "query": "timeseries avg(k6.http_req_duration)\n| fieldsAdd value = arrayAvg(`avg(k6.http_req_duration)`)",
+            "queryConfig": {
+                "filters": {},
+                "version": "5.4.0",
+                "datatype": "metrics",
+                "metricKey": "k6.http_req_duration",
+                "aggregation": "avg",
+                "by": [],
+                "convertToValue": "Avg"
+            },
+            "subType": "dql-builder-metrics",
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "avg(k6.http_req_duration)"
+                        ],
+                        "leftAxisDimensions": [
+                            "value"
+                        ]
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxisLabel": "url",
+                        "valueAxisLabel": "interval"
+                    }
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "value",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value",
+                    "trend": {
+                        "isVisible": true
+                    },
+                    "sparklineSettings": {
+                        "isVisible": true
+                    }
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": "auto",
+                    "dataMappings": {}
+                },
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "value",
+                            "rangeAxis": ""
+                        }
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "avg(k6.http_req_duration)",
+                        "unitCategory": "time",
+                        "baseUnit": "millisecond",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1717634621203
+                    }
+                ]
+            }
+        },
+        "24": {
+            "type": "data",
+            "title": "Max Request Duration",
+            "query": "timeseries max(k6.http_req_duration)\n| fieldsAdd value = arrayMax(`max(k6.http_req_duration)`)",
+            "queryConfig": {
+                "filters": {},
+                "version": "5.4.0",
+                "datatype": "metrics",
+                "metricKey": "k6.http_req_duration",
+                "aggregation": "max",
+                "by": [],
+                "convertToValue": "Max"
+            },
+            "subType": "dql-builder-metrics",
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "max(k6.http_req_duration)"
+                        ],
+                        "leftAxisDimensions": [
+                            "value"
+                        ]
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxisLabel": "url",
+                        "valueAxisLabel": "interval"
+                    }
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "value",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value",
+                    "trend": {
+                        "isVisible": true
+                    },
+                    "sparklineSettings": {
+                        "isVisible": true
+                    }
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": "auto",
+                    "dataMappings": {}
+                },
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "value",
+                            "rangeAxis": ""
+                        }
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "value",
+                        "unitCategory": "time",
+                        "baseUnit": "millisecond",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1717651836821
+                    }
+                ]
+            }
+        },
+        "25": {
+            "type": "data",
+            "title": "Failed request count",
+            "query": "timeseries avg(k6.http_req_failed)\n| fieldsAdd value = arraySum(`avg(k6.http_req_failed)`)",
+            "queryConfig": {
+                "filters": {},
+                "version": "5.4.0",
+                "datatype": "metrics",
+                "metricKey": "k6.http_req_failed",
+                "aggregation": "avg",
+                "by": [],
+                "convertToValue": "Sum"
+            },
+            "subType": "dql-builder-metrics",
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "avg(k6.http_req_failed)"
+                        ],
+                        "leftAxisDimensions": [
+                            "value"
+                        ]
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxisLabel": "url",
+                        "valueAxisLabel": "interval"
+                    }
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "value",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value",
+                    "trend": {
+                        "isVisible": true
+                    },
+                    "sparklineSettings": {
+                        "isVisible": true
+                    }
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": "auto",
+                    "dataMappings": {}
+                },
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "value",
+                            "rangeAxis": ""
+                        }
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "avg(k6.http_req_failed)",
+                        "unitCategory": "time",
+                        "baseUnit": "millisecond",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1717634555997
+                    }
+                ]
+            }
+        },
+        "26": {
+            "type": "data",
+            "title": "Top 10 Endpoints (by URL, Status Code and Method)",
+            "query": "timeseries sum(k6.http_reqs), by:{url, status, method}\n| fieldsAdd value = arraySum(`sum(k6.http_reqs)`)\n| limit 10",
+            "queryConfig": {
+                "limit": 10,
+                "filters": {},
+                "version": "5.4.0",
+                "datatype": "metrics",
+                "metricKey": "k6.http_reqs",
+                "aggregation": "sum",
+                "by": [
+                    "url",
+                    "status",
+                    "method"
+                ],
+                "convertToValue": "Sum"
+            },
+            "subType": "dql-builder-metrics",
+            "visualization": "table",
+            "visualizationSettings": {
+                "thresholds": [],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "sum(k6.http_reqs)"
+                        ],
+                        "leftAxisDimensions": [
+                            "url",
+                            "status",
+                            "method",
+                            "value"
+                        ]
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxis": "url",
+                        "valueAxis": "value",
+                        "categoryAxisLabel": "url",
+                        "valueAxisLabel": "value"
+                    }
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "url",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [
+                        [
+                            "interval"
+                        ],
+                        [
+                            "timeframe"
+                        ],
+                        [
+                            "sum(k6.http_reqs)"
+                        ]
+                    ],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": "auto",
+                    "dataMappings": {
+                        "category": "url",
+                        "value": "status"
+                    }
+                },
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "value",
+                            "rangeAxis": ""
+                        }
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "value",
+                        "unitCategory": "time",
+                        "baseUnit": "millisecond",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "requests",
+                        "delimiter": false,
+                        "added": 1717634621203
+                    }
+                ]
+            }
+        },
+        "27": {
+            "type": "data",
+            "title": "",
+            "query": "timeseries {\n      {failures = sum(k6.http_req_failed, default: 10)},\n      {all = sum(k6.http_reqs, default: 100)}\n    }\n| fieldsAdd result = 100 * (failures[] / all[])\n//| filter arrayAvg(result) > 0\n| sort arrayAvg(result) desc",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "categoricalBarChartSettings": {},
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "failures",
+                            "all",
+                            "result"
+                        ],
+                        "leftAxisDimensions": []
+                    },
+                    "hiddenLegendFields": []
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "result",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": "auto",
+                    "dataMappings": {}
+                },
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            }
         }
     },
     "layouts": {
         "0": {
             "x": 0,
-            "y": 5,
+            "y": 7,
             "w": 12,
             "h": 5
         },
         "1": {
             "x": 12,
-            "y": 5,
+            "y": 7,
             "w": 12,
             "h": 5
         },
         "2": {
             "x": 0,
-            "y": 10,
+            "y": 12,
             "w": 12,
             "h": 5
         },
         "3": {
             "x": 0,
-            "y": 4,
-            "w": 19,
+            "y": 6,
+            "w": 24,
             "h": 1
         },
         "4": {
             "x": 0,
-            "y": 16,
+            "y": 19,
             "w": 12,
             "h": 5
         },
         "5": {
             "x": 12,
-            "y": 16,
+            "y": 19,
             "w": 12,
             "h": 5
         },
         "6": {
             "x": 0,
-            "y": 15,
+            "y": 17,
             "w": 15,
             "h": 1
         },
         "7": {
             "x": 0,
-            "y": 21,
+            "y": 18,
             "w": 17,
             "h": 1
         },
         "8": {
             "x": 0,
-            "y": 22,
+            "y": 24,
             "w": 24,
             "h": 4
         },
         "9": {
             "x": 0,
-            "y": 29,
+            "y": 31,
             "w": 12,
             "h": 4
         },
         "10": {
             "x": 12,
-            "y": 29,
+            "y": 31,
             "w": 12,
             "h": 4
         },
         "11": {
             "x": 0,
-            "y": 33,
+            "y": 35,
             "w": 12,
             "h": 4
         },
         "12": {
             "x": 12,
-            "y": 33,
+            "y": 35,
             "w": 12,
             "h": 4
         },
         "13": {
             "x": 0,
-            "y": 37,
+            "y": 39,
             "w": 12,
             "h": 4
         },
         "14": {
             "x": 12,
-            "y": 10,
+            "y": 12,
             "w": 12,
             "h": 5
         },
         "15": {
             "x": 0,
-            "y": 26,
+            "y": 28,
             "w": 24,
             "h": 3
         },
         "16": {
             "x": 0,
-            "y": 41,
+            "y": 43,
             "w": 12,
             "h": 4
         },
         "17": {
             "x": 12,
-            "y": 37,
+            "y": 39,
             "w": 12,
             "h": 4
         },
         "18": {
             "x": 1,
             "y": 0,
-            "w": 7,
+            "w": 5,
             "h": 4
+        },
+        "19": {
+            "x": 8,
+            "y": 1,
+            "w": 2,
+            "h": 2
+        },
+        "20": {
+            "x": 6,
+            "y": 0,
+            "w": 17,
+            "h": 1
+        },
+        "21": {
+            "x": 6,
+            "y": 1,
+            "w": 2,
+            "h": 2
+        },
+        "22": {
+            "x": 14,
+            "y": 1,
+            "w": 3,
+            "h": 2
+        },
+        "23": {
+            "x": 17,
+            "y": 1,
+            "w": 3,
+            "h": 2
+        },
+        "24": {
+            "x": 20,
+            "y": 1,
+            "w": 3,
+            "h": 2
+        },
+        "25": {
+            "x": 10,
+            "y": 1,
+            "w": 4,
+            "h": 2
+        },
+        "26": {
+            "x": 6,
+            "y": 3,
+            "w": 17,
+            "h": 3
+        },
+        "27": {
+            "x": 0,
+            "y": 47,
+            "w": 8,
+            "h": 6
         }
     },
     "importedWithCode": false
