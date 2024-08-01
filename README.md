@@ -46,6 +46,7 @@ While you are waiting for the environment, add the dashboard to your Dynatrace e
 ## Start k6
 
 In the codespace terminal, type `docker ps` and wait until Docker is running.
+
 You should see this:
 
 ```
@@ -61,3 +62,24 @@ docker run \
     --mount type=bind,source=./k6scripts,target=/k6scripts hrexed/xk6-dynatrace-output:0.11 run /k6scripts/script.js \
     -o output-dynatrace
 ```
+
+## Validate Metrics
+
+k6 streams metrics into Dynatrace so after about a minute, do the following to ensure metrics are reaching Dynatrace.
+
+In Dynatrace:
+
+* Press `ctrl + k` and search for `notebooks`
+* Create a new notebook and add a new `DQL` section
+* Type the following: `timeseries avg(k6)`
+* Press `ctrl + =` to bring up auto completion. You should see the list of ingest
+
+![notebook showing metrics](images/notebook-showing-metrics.png)
+
+## View Dashboard
+
+Open the prebuilt dashboard you previously uploaded.
+
+Go to Dashboards (`ctrl + k` and search for `Dashboards`)
+
+The dashboard will begin to be populated with data.
