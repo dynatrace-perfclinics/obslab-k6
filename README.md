@@ -33,7 +33,7 @@ Create an API token with `metrics.ingest` permissions.
 
 Click this button to launch the demo in a new tab.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/dynatrace-perfclinics/obslab-auto-remediation-eda)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/dynatrace-perfclinics/obslab-k6)
 
 ## Import Dynatrace Dashboard (Dynatrace platform only)
 
