@@ -76,7 +76,7 @@ In Dynatrace:
 * Type the following: `timeseries avg(k6)`
 * Press `ctrl + =` to bring up auto completion. You should see the list of ingest
 
-![notebook showing metrics](images/notebook-showing-metrics.png)
+![notebook showing metrics](docs/images/notebook-showing-metrics.png)
 
 ## View Dashboard
 
