@@ -35,7 +35,7 @@ Click this button to launch the demo in a new tab.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/dynatrace-perfclinics/obslab-auto-remediation-eda)
 
-## Import Dynatrace Dashboad (Dynatrace platform only)
+## Import Dynatrace Dashboard (Dynatrace platform only)
 
 While you are waiting for the environment, add the dashboard to your Dynatrace environment.
 
